@@ -15,7 +15,6 @@ public class Ejercicio5 {
                 matrizA[i][j] = teclado.nextInt();
             }
         }
-        
         System.out.println("--- Ingreso de datos para la Matriz B ---");
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
@@ -23,11 +22,9 @@ public class Ejercicio5 {
                 matrizB[i][j] = teclado.nextInt();
             }
         }
-        
         System.out.print("\nIngrese un número escalar para multiplicar: ");
         int escalar = teclado.nextInt();
         
-        // 1. Producto por un escalar
         System.out.println("\n--- Matriz A por " + escalar + " ---");
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
@@ -35,7 +32,6 @@ public class Ejercicio5 {
             }
             System.out.println();
         }
-        
         System.out.println("\n--- Matriz B por " + escalar + " ---");
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
@@ -43,8 +39,7 @@ public class Ejercicio5 {
             }
             System.out.println();
         }
-        
-        // 2. Suma de matrices
+        // Suma de matrices
         System.out.println("\n--- Suma (Matriz A + Matriz B) ---");
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
@@ -52,13 +47,12 @@ public class Ejercicio5 {
             }
             System.out.println();
         }
-        
-        // 3. Producto (Multiplicación) de matrices
+        // Producto de matrices
         System.out.println("\n--- Producto (Matriz A * Matriz B) ---");
         int[][] producto = new int[3][3];
         for(int i = 0; i < 3; i++) {
             for(int j = 0; j < 3; j++) {
-                // Iteramos la fila de A y la columna de B
+              
                 for(int k = 0; k < 3; k++) {
                     producto[i][j] += matrizA[i][k] * matrizB[k][j];
                 }
