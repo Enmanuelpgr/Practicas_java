@@ -1,0 +1,69 @@
+<div class="container py-5">
+  <div class="text-center mb-5 fade-in-up">
+    <i class="bi bi-headset display-4 text-primary mb-3 d-block"></i>
+    <h2 class="text-primary fw-bold">Contáctanos</h2>
+    <p class="text-muted fs-5">¿Tienes dudas sobre algún equipo o necesitas soporte técnico? Estamos para ayudarte.</p>
+  </div>
+
+  <div class="row g-5">
+    <div class="col-md-7 fade-in-up" style="animation-delay: 100ms">
+      <div class="card shadow-sm border-0 p-4 rounded-4">
+        <form (submit)="enviarMensaje($event)">
+          <div class="mb-4">
+            <label class="form-label fw-semibold text-secondary"><i class="bi bi-person me-2"></i>Nombre Completo</label>
+            <input type="text" class="form-control bg-light border-0 py-2" required placeholder="Ej. Juan Pérez">
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-semibold text-secondary"><i class="bi bi-envelope me-2"></i>Correo Electrónico</label>
+            <input type="email" class="form-control bg-light border-0 py-2" required placeholder="tu@correo.com">
+          </div>
+          <div class="mb-4">
+            <label class="form-label fw-semibold text-secondary"><i class="bi bi-chat-text me-2"></i>Mensaje</label>
+            <textarea class="form-control bg-light border-0 py-2" rows="5" required placeholder="¿En qué te podemos ayudar?"></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary w-100 fw-bold py-3 rounded-3 d-flex align-items-center justify-content-center hover-zoom">
+            <i class="bi bi-send-fill me-2"></i> Enviar Mensaje
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <div class="col-md-5 fade-in-up" style="animation-delay: 200ms">
+      <div class="bg-white p-5 rounded-4 shadow-sm border-0 h-100">
+        <h4 class="fw-bold mb-5 d-flex align-items-center border-bottom pb-3">
+          <i class="bi bi-info-circle-fill text-primary me-3"></i> Información de la Tienda
+        </h4>
+        
+        <div class="d-flex align-items-start mb-4">
+          <div class="bg-light p-3 rounded-circle text-primary me-4">
+            <i class="bi bi-geo-alt-fill fs-4"></i>
+          </div>
+          <div>
+            <h6 class="fw-bold mb-1 text-dark">Dirección</h6>
+            <p class="text-muted mb-0">Santo Domingo, Distrito Nacional<br>República Dominicana</p>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-start mb-4">
+          <div class="bg-light p-3 rounded-circle text-primary me-4">
+            <i class="bi bi-telephone-fill fs-4"></i>
+          </div>
+          <div>
+            <h6 class="fw-bold mb-1 text-dark">Teléfono</h6>
+            <p class="text-muted mb-0">+1 (809) 555-0199</p>
+          </div>
+        </div>
+
+        <div class="d-flex align-items-start">
+          <div class="bg-light p-3 rounded-circle text-primary me-4">
+            <i class="bi bi-envelope-at-fill fs-4"></i>
+          </div>
+          <div>
+            <h6 class="fw-bold mb-1 text-dark">Email</h6>
+            <p class="text-muted mb-0">soporte&#64;enmatech.com</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

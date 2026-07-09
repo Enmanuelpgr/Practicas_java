@@ -1,0 +1,59 @@
+<div class="container py-5">
+  <h2 class="mb-4 text-primary fw-bold text-center fade-in-up">Nuestro Catálogo</h2>
+  
+  <div class="row justify-content-center mb-5 fade-in-up" style="animation-delay: 100ms">
+    <div class="col-md-8">
+      <div class="input-group input-group-lg shadow-sm rounded-3 overflow-hidden">
+        <input 
+          type="text" 
+          class="form-control border-0 bg-white px-4" 
+          placeholder="Buscar por nombre o categoría..."
+          (input)="actualizarBusqueda($event)">
+        <button class="btn btn-primary px-4 d-flex align-items-center justify-content-center" type="button">
+          <i class="bi bi-search fs-5"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+  
+  <div class="row g-4">
+    @for (item of catalogoFiltrado(); track item.id; let i = $index) {
+      
+      <div class="col-md-4 fade-in-up" [style.animation-delay]="(i * 100) + 'ms'">
+        
+        <div class="card h-100 shadow-sm border-0 hover-zoom rounded-4 overflow-hidden">
+          <img [src]="item.imagen" class="card-img-top border-bottom" alt="{{ item.nombre }}">
+          
+          <div class="card-body p-4">
+            <span class="badge bg-dark mb-3 px-3 py-2 rounded-pill shadow-sm">
+              <i class="bi bi-tag-fill me-1 text-primary"></i> {{ item.categoria }}
+            </span>
+            <h5 class="card-title fw-bold mb-3">{{ item.nombre }}</h5>
+            <p class="card-text text-muted mb-4">{{ item.descripcion }}</p>
+            <h3 class="text-success fw-black">${{ item.precio }}</h3>
+          </div>
+          
+          <div class="card-footer bg-white border-0 p-4 pt-0">
+            <div class="d-grid gap-2">
+              <a [routerLink]="['/producto', item.id]" class="btn btn-outline-primary fw-bold py-2 rounded-3 d-flex align-items-center justify-content-center">
+                <i class="bi bi-eye me-2"></i> Ver Detalles
+              </a>
+              <button class="btn btn-primary fw-bold py-2 rounded-3 d-flex align-items-center justify-content-center" (click)="agregarAlCarrito(item)">
+                <i class="bi bi-cart-plus me-2"></i> Añadir al Carrito
+              </button>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+    }
+    
+    @if (catalogoFiltrado().length === 0) {
+      <div class="col-12 text-center py-5 fade-in-up">
+        <i class="bi bi-exclamation-circle text-muted display-3 mb-3 d-block"></i>
+        <h3 class="text-muted fw-bold">No se encontraron productos</h3>
+        <p class="text-secondary">Intenta buscar otra categoría o nombre.</p>
+      </div>
+    }
+  </div>
+</div>
