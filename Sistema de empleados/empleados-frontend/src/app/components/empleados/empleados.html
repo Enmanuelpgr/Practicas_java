@@ -1,0 +1,103 @@
+<div class="contenedor-principal">
+  <div class="header">
+    <h2>Gestión de Empleados</h2>
+    <div class="buscador">
+      <i class='bx bx-search'></i>
+      <input type="text" placeholder="Buscar por nombre, cargo o ID..." [(ngModel)]="terminoBusqueda">
+    </div>
+  </div>
+
+  <div class="grid-layout">
+    <!-- Formulario -->
+    <div class="formulario-card">
+      <h3>{{ empleadoEnEdicion ? 'Editar Empleado' : 'Nuevo Empleado' }}</h3>
+      <form (ngSubmit)="guardarEmpleado()">
+        <div class="grupo-input">
+          <label>Nombre Completo</label>
+          <input type="text" [(ngModel)]="nuevoEmpleado.nombre" name="nombre" required>
+        </div>
+        <div class="grupo-input">
+          <label>Cargo</label>
+          <input type="text" [(ngModel)]="nuevoEmpleado.cargo" name="cargo" required>
+        </div>
+        <div class="grupo-input">
+          <label>Departamento</label>
+          <input type="text" [(ngModel)]="nuevoEmpleado.departamento" name="departamento" required>
+        </div>
+        <div class="grupo-input">
+          <label>Salario</label>
+          <input type="number" [(ngModel)]="nuevoEmpleado.salario" name="salario" required>
+        </div>
+        <div class="grupo-input">
+          <label>Correo Electrónico</label>
+          <input type="email" [(ngModel)]="nuevoEmpleado.correo" name="correo" required>
+        </div>
+        
+        <div class="botones-form">
+          <button type="submit" class="btn-guardar">
+            <i class='bx bx-save'></i> {{ empleadoEnEdicion ? 'Actualizar' : 'Guardar' }}
+          </button>
+          <button type="button" class="btn-cancelar" *ngIf="empleadoEnEdicion" (click)="cancelarEdicion()">
+            Cancelar
+          </button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Tabla -->
+    <div class="tabla-card">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Cargo</th>
+            <th>Dpto.</th>
+            <th>Salario</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let emp of empleadosFiltrados">
+            <td>{{ emp.empleadoId }}</td>
+            <td>
+              <strong>{{ emp.nombre }}</strong><br>
+              <small class="correo-text">{{ emp.correo }}</small>
+            </td>
+            <td>{{ emp.cargo }}</td>
+            <td>{{ emp.departamento }}</td>
+            <td>${{ emp.salario }}</td>
+            <td class="acciones">
+              <button class="btn-icon editar" (click)="editarEmpleado(emp)">
+                <i class='bx bx-edit-alt'></i>
+              </button>
+              <button class="btn-icon eliminar" (click)="abrirModalEliminar(emp._id)">
+                <i class='bx bx-trash'></i>
+              </button>
+            </td>
+          </tr>
+          <tr *ngIf="empleadosFiltrados.length === 0">
+            <td colspan="6" class="text-center">No se encontraron empleados.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- Modal y Notificación -->
+  <div class="modal-overlay" *ngIf="modalEliminarVisible">
+    <div class="modal-content">
+      <i class='bx bx-error-circle icono-peligro'></i>
+      <h3>¿Eliminar empleado?</h3>
+      <p>Esta acción no se puede deshacer.</p>
+      <div class="modal-botones">
+        <button class="btn-cancelar" (click)="cerrarModalEliminar()">Cancelar</button>
+        <button class="btn-confirmar-eliminar" (click)="confirmarEliminacion()">Eliminar</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast-notification" [ngClass]="notificacion.tipo" *ngIf="notificacion.visible">
+    {{ notificacion.mensaje }}
+  </div>
+</div>
